@@ -1,0 +1,23 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local Obsidian session state
+.obsidian/workspace.json
+
+# Generated incremental cache
+Scripts/knowledge-base-state.json
+
+# User-owned manual notes stay local
+Projects/*/MichaelsNotes/**
+
+# Visible-shell runtime artifacts
+Projects/visible-shell-command-workflow/live-visible-shell.pid
+Projects/visible-shell-command-workflow/live-visible-shell.command-dir.txt
+Projects/visible-shell-command-workflow/live-visible-shell.title.txt
+Projects/visible-shell-command-workflow/live-visible-shell.transcript.txt
+Projects/visible-shell-command-workflow/live-visible-shell-transcript.txt
+Projects/visible-shell-command-workflow/live-visible-shell-transcript-test.txt
+Projects/visible-shell-command-workflow/live-visible-shell-20*.txt
+Projects/visible-shell-command-workflow/live-visible-shell-commands-*/
