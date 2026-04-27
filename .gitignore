@@ -3,21 +3,18 @@
 Thumbs.db
 .vscode/
 
-# Local Obsidian session state
-.obsidian/workspace.json
+# Public release repos ship as a blank starter vault, not a mirror of one machine's live data
+.obsidian/
+Globals/*
+!Globals/.gitkeep
+Machines/*
+!Machines/.gitkeep
+Projects/*
+!Projects/.gitkeep
+User/*
+!User/.gitkeep
 
-# Generated incremental cache
+# Generated views and caches stay local
+activeProjects.md
+inactiveProjects.md
 Scripts/knowledge-base-state.json
-
-# User-owned manual notes stay local
-Projects/*/MichaelsNotes/**
-
-# Visible-shell runtime artifacts
-Projects/visible-shell-command-workflow/live-visible-shell.pid
-Projects/visible-shell-command-workflow/live-visible-shell.command-dir.txt
-Projects/visible-shell-command-workflow/live-visible-shell.title.txt
-Projects/visible-shell-command-workflow/live-visible-shell.transcript.txt
-Projects/visible-shell-command-workflow/live-visible-shell-transcript.txt
-Projects/visible-shell-command-workflow/live-visible-shell-transcript-test.txt
-Projects/visible-shell-command-workflow/live-visible-shell-20*.txt
-Projects/visible-shell-command-workflow/live-visible-shell-commands-*/

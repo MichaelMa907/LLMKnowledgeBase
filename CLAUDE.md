@@ -52,9 +52,10 @@ If two notes at the same scope conflict, prefer the more explicit and more recen
 
 ## Git Publishing Rules
 - `.gitignore` defines the public GitHub distribution surface for this vault; ignored files stay local and must not be force-added by default
+- The public GitHub repo is a starter release surface; do not track live `Projects/`, `Machines/`, `User/`, `.obsidian/`, or generated index/cache files there unless the user explicitly asks for a non-starter export
 - On a machine that has write access to the canonical GitHub repo for this vault, when a knowledge-base-wide change modifies tracked files, commit and push those changes to `dev`
 - Push to `main` only when the user explicitly asks for a release or explicit main update
-- Treat local Obsidian workspace state, `Scripts/knowledge-base-state.json`, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
+- Treat local Obsidian workspace state, all live `Projects/`, all machine-scoped notes, `User/User.md`, generated index/cache files, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
 
 ## Project Matching Rules
 - Default to a new project unless the user explicitly says to continue a previous conversation, continue a known project, or work inside a named existing project

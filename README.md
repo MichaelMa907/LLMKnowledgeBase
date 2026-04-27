@@ -1,20 +1,25 @@
 # LLMKnowledgeBase
 
-Shared Obsidian-based knowledge base for Codex, Claude, and future agents.
+Starter Obsidian-based knowledge base for Codex, Claude, and future agents.
 
 ## Repository Role
 - `main` is the explicit release branch.
-- `dev` is the default branch for routine tracked vault changes from a machine that has canonical repo write access.
-- `.gitignore` defines which files are part of the public GitHub distribution surface and which stay local.
+- `dev` is the staging branch for tracked starter-vault changes before release.
+- The public repo is intentionally a blank starter surface, not a mirror of one machine's live vault history.
 
-## Vault Layout
-- `AGENTS.md` and `CLAUDE.md` hold the shared operating protocol.
-- `Projects/` stores project notes, commits, and learned notes.
-- `Machines/` stores machine-scoped learned notes.
-- `User/User.md` stores the small shared user profile.
-- `Templates/` holds note templates.
-- `Scripts/update-knowledge-base.mjs` regenerates derived views.
+## What The Release Includes
+- `AGENTS.md` and `CLAUDE.md` for the shared operating protocol.
+- `Templates/` for project, commit, and learned-note scaffolding.
+- `Scripts/update-knowledge-base.mjs` for rebuilding generated views locally.
+- Empty starter directories for `Globals/`, `Machines/`, `Projects/`, and `User/`.
 
-## Notes
-- After cloning, run `node Scripts/update-knowledge-base.mjs --full` if you want to rebuild all generated views from the local contents immediately.
-- Local workspace state, incremental cache, `MichaelsNotes/` contents, and runtime shell artifacts stay untracked unless explicitly requested otherwise.
+## What Stays Local
+- Real project history under `Projects/`.
+- Machine-specific notes under `Machines/`.
+- User profile content under `User/`.
+- `.obsidian/` workspace settings and generated files such as `activeProjects.md`, `inactiveProjects.md`, `Globals/globalIndex.md`, and `Scripts/knowledge-base-state.json`.
+
+## Setup
+1. Clone the repo and open it in Obsidian if you use Obsidian.
+2. Add your own `User/User.md` and project notes as needed.
+3. Run `node Scripts/update-knowledge-base.mjs --full` after you create local notes to generate your local indexes and cache.
