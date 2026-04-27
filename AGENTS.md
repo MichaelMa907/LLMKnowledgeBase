@@ -3,13 +3,9 @@
 This vault is a shared memory and truth system for Codex, Claude, and future agents. Raw history lives in commit threads, current stable state lives in project notes, cross-project truth is lifted into global or machine-scoped notes, and shared user metadata lives in `User/User.md`.
 
 ## Current Codex Environment
-- Verified Codex system skills available right now: `imagegen`, `openai-docs`, `plugin-creator`, `skill-creator`, `skill-installer`
-- Verified user-installed Codex local skills: none
-- Verified local Codex MCP servers from `C:\Users\micha\.codex\config.toml`: `playwright`
-- Verified cross-platform knowledge-base script runtime on this machine: `node v24.14.1`
-- Verified Codex instruction entrypoint: `C:\Users\micha\.codex\AGENTS.md` currently redirects to this vault file
-- Verified separate local instruction sidecars currently absent: `C:\Users\micha\.codex\user.agent.md`, `C:\Users\micha\.codex\learned.agent.md`
-- If Codex gains or loses a skill or MCP, update this section in the same task that changed the environment
+- This public starter file intentionally avoids machine-specific paths, hostnames, and installed-tool claims
+- Store local Codex skills, MCP servers, runtime versions, and instruction-entrypoint details in `Machines/<machine-id>/Learned/` instead of publishing them in the starter release
+- If Codex gains or loses a skill or MCP in a local vault, update the relevant machine-scoped note in the same task that changed the environment
 
 ## Truth Model
 - `User/User.md` stores the canonical small shared user profile for cross-project identity, durable preferences, working style, and enduring interests
@@ -49,10 +45,10 @@ If two notes at the same scope conflict, prefer the more explicit and more recen
 
 ## Git Publishing Rules
 - `.gitignore` defines the public GitHub distribution surface for this vault; ignored files stay local and must not be force-added by default
-- The public GitHub repo is a starter release surface; do not track live `Projects/`, `Machines/`, `User/`, `.obsidian/`, or generated index/cache files there unless the user explicitly asks for a non-starter export
+- The public GitHub repo is a starter release surface plus `Projects/llm-knowledge-base-system/` as the system reference project; do not track other live `Projects/`, `Machines/`, `User/`, `.obsidian/`, or generated root/global/cache files there unless the user explicitly asks for a non-starter export
 - On a machine that has write access to the canonical GitHub repo for this vault, when a knowledge-base-wide change modifies tracked files, commit and push those changes to `dev`
 - Push to `main` only when the user explicitly asks for a release or explicit main update
-- Treat local Obsidian workspace state, all live `Projects/`, all machine-scoped notes, `User/User.md`, generated index/cache files, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
+- Treat local Obsidian workspace state, live projects other than `Projects/llm-knowledge-base-system/`, all machine-scoped notes, `User/User.md`, generated root/global/cache files, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
 
 ## Project Matching Rules
 - Default to a new project unless the user explicitly says to continue a previous conversation, continue a known project, or work inside a named existing project

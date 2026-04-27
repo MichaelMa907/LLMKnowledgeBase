@@ -5,16 +5,17 @@ Starter Obsidian-based knowledge base for Codex, Claude, and future agents.
 ## Repository Role
 - `main` is the explicit release branch.
 - `dev` is the staging branch for tracked starter-vault changes before release.
-- The public repo is intentionally a blank starter surface, not a mirror of one machine's live vault history.
+- The public repo is intentionally a starter surface with one system reference project, not a mirror of one machine's live vault history.
 
 ## What The Release Includes
 - `AGENTS.md` and `CLAUDE.md` for the shared operating protocol.
 - `Templates/` for project, commit, and learned-note scaffolding.
 - `Scripts/update-knowledge-base.mjs` for rebuilding generated views locally.
-- Empty starter directories for `Globals/`, `Machines/`, `Projects/`, and `User/`.
+- `Projects/llm-knowledge-base-system/` as the built-in system reference and sample project, including its learned notes.
+- Empty starter directories for `Globals/`, `Machines/`, and `User/`.
 
 ## What Stays Local
-- Real project history under `Projects/`.
+- Real project history under `Projects/`, except for the included `Projects/llm-knowledge-base-system/` reference project.
 - Machine-specific notes under `Machines/`.
 - User profile content under `User/`.
 - `.obsidian/` workspace settings and generated files such as `activeProjects.md`, `inactiveProjects.md`, `Globals/globalIndex.md`, and `Scripts/knowledge-base-state.json`.

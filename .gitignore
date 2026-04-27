@@ -3,7 +3,7 @@
 Thumbs.db
 .vscode/
 
-# Public release repos ship as a blank starter vault, not a mirror of one machine's live data
+# Public release repos ship a starter vault plus the system reference project, not a mirror of one machine's live data
 .obsidian/
 Globals/*
 !Globals/.gitkeep
@@ -11,6 +11,8 @@ Machines/*
 !Machines/.gitkeep
 Projects/*
 !Projects/.gitkeep
+!Projects/llm-knowledge-base-system/
+!Projects/llm-knowledge-base-system/**
 User/*
 !User/.gitkeep
 

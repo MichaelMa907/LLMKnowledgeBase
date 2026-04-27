@@ -3,16 +3,10 @@
 This vault is a shared memory and truth system for Claude, Codex, and future agents. Raw history lives in commit threads, current stable state lives in project notes, cross-project truth is lifted into global or machine-scoped notes, and shared user metadata lives in `User/User.md`.
 
 ## Current Claude Environment
-- Verified Claude built-in / harness skills available right now: `update-config`, `keybindings-help`, `simplify`, `less-permission-prompts`, `loop`, `schedule`, `claude-api`, `init`, `review`, `security-review`
-- Verified Anthropic skills plugin (`anthropic-skills:*`) available right now: `consolidate-memory`, `setup-cowork`, `pdf`, `xlsx`, `pptx`, `docx`, `schedule`, `skill-creator`
-- Verified user-installed Claude local skills: none
-- Verified Claude MCP servers available right now: `Claude_Preview` (headless preview: start/stop, screenshot, snapshot, click, fill, eval, console/network, logs), `Claude_in_Chrome` (live Chrome control: navigate, tabs, find, form_input, javascript_tool, screenshots, shortcuts, network/console reads), `ccd_session` (session chaptering via `mark_chapter`, out-of-scope task spawn via `spawn_task`), `ccd_directory` (`request_directory`), `mcp-registry` (`list_connectors`, `search_mcp_registry`, `suggest_connectors`), `scheduled-tasks` (`create_scheduled_task`, `list_scheduled_tasks`, `update_scheduled_task`)
-- Verified Claude subagents registered in this harness: `claude-code-guide`, `Explore`, `general-purpose`, `Plan`, `statusline-setup`
-- Verified Claude harness tools beyond the standard Read/Edit/Write/Glob/Grep/Bash set: `PowerShell`, `Agent`, `Skill`, `ToolSearch`, `ScheduleWakeup`, `WebFetch`, `WebSearch`, `NotebookEdit`, `TodoWrite`, `Monitor`, `CronCreate` / `CronList` / `CronDelete`, `EnterPlanMode` / `ExitPlanMode`, `EnterWorktree` / `ExitWorktree`, `AskUserQuestion`, `PushNotification`, `RemoteTrigger`, `TaskOutput` / `TaskStop`
-- Verified cross-platform knowledge-base script runtime on this machine: `node v24.14.1`
-- Verified Claude instruction entrypoint: `C:\Users\micha\.claude\CLAUDE.md` currently redirects to this vault file
+- This public starter file intentionally avoids machine-specific paths, hostnames, and installed-tool claims
+- Store local Claude skills, MCP servers, runtime versions, and instruction-entrypoint details in `Machines/<machine-id>/Learned/` instead of publishing them in the starter release
 - Do not assume Codex skills or Codex MCPs automatically exist for Claude
-- When Claude gains or loses a verified local skill or MCP, update this section in the same task
+- When Claude gains or loses a verified local skill or MCP in a local vault, update the relevant machine-scoped note in the same task
 
 ## Truth Model
 - `User/User.md` stores the canonical small shared user profile for cross-project identity, durable preferences, working style, and enduring interests
@@ -52,10 +46,10 @@ If two notes at the same scope conflict, prefer the more explicit and more recen
 
 ## Git Publishing Rules
 - `.gitignore` defines the public GitHub distribution surface for this vault; ignored files stay local and must not be force-added by default
-- The public GitHub repo is a starter release surface; do not track live `Projects/`, `Machines/`, `User/`, `.obsidian/`, or generated index/cache files there unless the user explicitly asks for a non-starter export
+- The public GitHub repo is a starter release surface plus `Projects/llm-knowledge-base-system/` as the system reference project; do not track other live `Projects/`, `Machines/`, `User/`, `.obsidian/`, or generated root/global/cache files there unless the user explicitly asks for a non-starter export
 - On a machine that has write access to the canonical GitHub repo for this vault, when a knowledge-base-wide change modifies tracked files, commit and push those changes to `dev`
 - Push to `main` only when the user explicitly asks for a release or explicit main update
-- Treat local Obsidian workspace state, all live `Projects/`, all machine-scoped notes, `User/User.md`, generated index/cache files, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
+- Treat local Obsidian workspace state, live projects other than `Projects/llm-knowledge-base-system/`, all machine-scoped notes, `User/User.md`, generated root/global/cache files, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
 
 ## Project Matching Rules
 - Default to a new project unless the user explicitly says to continue a previous conversation, continue a known project, or work inside a named existing project
