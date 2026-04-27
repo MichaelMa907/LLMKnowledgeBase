@@ -11,7 +11,7 @@ resolved: false
 status: "active"
 sessions_count: 2
 commit_threads_count: 2
-total_prompt_entries: 4
+total_prompt_entries: 5
 project_folder: "Projects/minecraft-shaders-mod-setup/"
 learned_folder: "Projects/minecraft-shaders-mod-setup/Learned/"
 current_commit_thread: "Projects/minecraft-shaders-mod-setup/Commits/2026-04-27 0028 - mod-safety-check.md"
@@ -63,8 +63,8 @@ tags:
 - Identify the most important remaining upgrades and risks.
 
 ## Current State
-- Stable state right now: The client already has the main Fabric performance core: `Sodium`, `Lithium`, `FerriteCore`, `EntityCulling`, `Iris`, and supporting dependencies. Fresh source checks show `ImmediatelyFast` is active, `ModernFix` is still actively published on the original project for Fabric `1.21.1`, and `Noisium` is the mod where the maintained fork matters.
-- What changed this session: Created a follow-up session thread and verified current support status, version availability, and practical usefulness of `ImmediatelyFast`, `ModernFix`, and the maintained `Noisium` forks for a shader-heavy Fabric `1.21.1` setup.
+- Stable state right now: The client already has the main Fabric performance core: `Sodium`, `Lithium`, `FerriteCore`, `EntityCulling`, `Iris`, and supporting dependencies. Fresh source checks plus the user's Prism screenshot indicate the instance is likely on `1.21.11`, where `ImmediatelyFast` has an official Fabric build, `ModernFix` is represented in Prism by the maintained `ModernFix-mVUS` fork for Fabric minor-version support, and `NoisiumForked` is the maintained path for Noisium-style optimization.
+- What changed this session: Created a follow-up session thread, verified current support status and version availability, then refined the recommendation using the user's Prism results so it matches the likely `1.21.11` instance instead of the older `1.21.1` case.
 - Remaining risk: `Noisium`-style worldgen optimizers are more situational than render optimizers, and the biggest practical performance variable is still the `Distant Horizons` plus shader-pack combination rather than these three mods themselves.
 
 ## Resolution
@@ -95,6 +95,7 @@ tags:
 - [00:28] Confirmed `ImmediatelyFast` remains actively maintained for Fabric `1.21.1`.
 - [00:28] Confirmed `ModernFix` does not require a fork for Fabric `1.21.1`; the original project still has recent `1.21.1` releases.
 - [00:28] Confirmed the original `Noisium` is no longer the safest recommendation, and a maintained fork is the current path if you want that category of optimization.
+- [00:28] Corrected the recommendation using the Prism screenshot: for the likely `1.21.11` instance, `ModernFix-mVUS` is the expected Fabric listing, while `ImmediatelyFast` and `NoisiumForked` also have matching `1.21.11` builds.
 
 ## Commit Threads
 - [[Projects/minecraft-shaders-mod-setup/Commits/2026-04-26 2330 - initial-assessment]] - open - 2026-04-26 23:30

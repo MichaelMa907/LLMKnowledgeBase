@@ -1,5 +1,5 @@
 # Active Projects
-generated: 2026-04-27 00:29:59 -04:00
+generated: 2026-04-27 00:31:30 -04:00
 source: Scripts/update-knowledge-base.mjs
 
 Projects are active when `resolved=false` and `last_active` is within the last 30 days. Sorted by `sessions_count` descending.

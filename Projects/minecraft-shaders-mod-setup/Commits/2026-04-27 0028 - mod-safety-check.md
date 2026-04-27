@@ -9,7 +9,7 @@ session_id: "codex-minecraft-shaders-mod-setup-20260427-0028"
 started: "2026-04-27 00:28"
 last_updated: "2026-04-27 00:28"
 status: "open"
-prompt_count: 1
+prompt_count: 2
 merge_review_status: "not_needed"
 tags:
   - commit
@@ -38,12 +38,22 @@ tags:
 - Outcome: Confirmed `ImmediatelyFast` is clearly active, `ModernFix` is still active on the original project for Fabric `1.21.1`, and `Noisium` is the one where the maintained fork now matters. Also confirmed that popularity is not a concern for `ImmediatelyFast` or `ModernFix`, while `Noisium`-family mods are more niche and situational.
 - Follow-up impact: Recommend `ImmediatelyFast` and `ModernFix` as strong additions; treat a maintained `Noisium` fork as optional and mainly useful for chunk generation, exploration, and `Distant Horizons` LOD generation.
 
+### Prompt 02 - 2026-04-27 00:28
+- User request: Shared a Prism screenshot showing only `ModernFix-mVUS` in search results.
+- Action: Reconciled the screenshot with current Modrinth data and adjusted the recommendation to the likely `1.21.11` instance version shown by the installed mod metadata.
+- Reason: The filtered launcher result is stronger evidence for the user's exact version than a general project-level support summary.
+- Commands / tools: Screenshot inspection and targeted web verification.
+- Files / notes touched: `Projects/minecraft-shaders-mod-setup/minecraft-shaders-mod-setup.md`.
+- Scope impact: Project note corrected to reflect version-specific ModernFix fork usage.
+- Outcome: Determined that Prism is behaving as expected for a likely `1.21.11` Fabric instance: use `ModernFix-mVUS` there, even though the original ModernFix project still has official Fabric `1.21.1` builds.
+- Follow-up impact: The user can now install by exact version instead of trying to force the wrong branch of the mod.
+
 ## Scope Notes
 - Global notes created or updated:
 - Machine notes created or updated:
 - Project notes created or updated: `Projects/minecraft-shaders-mod-setup/minecraft-shaders-mod-setup.md`
 
 ## Handoff / Closeout
-- Current state: The best next recommendations are narrower than before: `ImmediatelyFast` and `ModernFix` look clearly worthwhile; `Noisium` should only be added if the user wants its specific worldgen benefits.
+- Current state: The version-specific recommendation is now clearer: `ImmediatelyFast` is a clean yes, `ModernFix-mVUS` is the expected ModernFix branch for the likely `1.21.11` Fabric instance, and `NoisiumForked` is optional for worldgen-focused gains.
 - Open issues: Exact shader pack, texture pack resolution, and Java/RAM settings are still unknown.
 - Suggested next prompt: "give me the exact safest mods to add for my 1.21.1 Fabric setup"
