@@ -7,9 +7,9 @@ project_slug: "llm-knowledge-base-system"
 agent: "Codex"
 session_id: "<session-2026-04-27-0127>"
 started: "2026-04-27 01:27"
-last_updated: "2026-04-27 01:45"
+last_updated: "2026-04-27 01:54"
 status: "open"
-prompt_count: 2
+prompt_count: 3
 merge_review_status: "not_needed"
 tags:
   - commit
@@ -48,18 +48,31 @@ tags:
 - Outcome: the release surface now reflects starter framework plus sample/reference project instead of a completely blank vault.
 - Follow-up impact: future releases should keep this project included unless the user explicitly asks for a no-project bootstrap.
 
+### Prompt 03 - 2026-04-27 01:54
+- User request: ensure the public README fully explains how another user sets up the knowledge base after cloning, including the agent instruction block and the command that generates global learned indexes from the included system project.
+- Action: added PowerShell and batch setup wrappers that run the Node full rebuild, expanded `README.md` with clone/setup, agent-entrypoint, first-local-note, and updater instructions, and recorded the setup requirement as a global learned note.
+- Reason: a clone alone does not create ignored generated views such as `Globals/globalIndex.md`, and agents will not know to use the vault unless their always-loaded instruction file points at the local clone and protocol file.
+- Commands / tools: inspected the current README and updater script, patched `README.md`, added `Scripts/setup-knowledge-base.ps1` and `Scripts/setup-knowledge-base.cmd`, created a learned setup note, and regenerated the knowledge-base indexes.
+- Files / notes touched: `README.md`, `Scripts/setup-knowledge-base.ps1`, `Scripts/setup-knowledge-base.cmd`, this commit thread, `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`, and `Projects/llm-knowledge-base-system/Learned/2026-04-27 0154 - fresh-clone-setup-needs-agent-entrypoint-and-index-rebuild.md`.
+- Scope impact: improves the public starter repo onboarding path and makes the generated-index bootstrap step explicit.
+- Outcome: a new user can now follow the README to configure Codex or Claude and generate the local indexes needed for the included learned notes to surface globally.
+- Follow-up impact: if an installer is added later, it should automate these README steps rather than replacing the documented manual path silently.
+
 ## Scope Notes
 - Global notes created or updated:
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0127 - starter-release-repo-omits-live-vault-data.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-04-27 0154 - fresh-clone-setup-needs-agent-entrypoint-and-index-rebuild.md`
 - Project notes created or updated:
   `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`
   `AGENTS.md`
   `CLAUDE.md`
   `.gitignore`
   `README.md`
+  `Scripts/setup-knowledge-base.ps1`
+  `Scripts/setup-knowledge-base.cmd`
 
 ## Handoff / Closeout
-- Current state: the public repo is being corrected to a starter-vault release surface with the `llm-knowledge-base-system` reference project included, while the local vault still keeps its other private history and generated files.
+- Current state: the public repo is a starter-vault release surface with the `llm-knowledge-base-system` reference project included, setup wrappers for full local index generation, and README instructions for agent entrypoint configuration.
 - Open issues: release automation is still manual, and generated root/global indexes remain local/regenerable by default.
 - Suggested next prompt: if needed later, add a scripted release command that verifies the staged surface before pushing `main`.
 - Before closing this commit, update `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md` and run `node Scripts/update-knowledge-base.mjs` with the changed roots for this prompt.
