@@ -1,5 +1,5 @@
 # Inactive Projects
-generated: 2026-04-27 00:12:10 -04:00
+generated: 2026-04-27 00:29:59 -04:00
 source: Scripts/update-knowledge-base.mjs
 
 Projects are inactive when `resolved=true` or when `last_active` is older than 30 days. Sorted by `last_active` descending.

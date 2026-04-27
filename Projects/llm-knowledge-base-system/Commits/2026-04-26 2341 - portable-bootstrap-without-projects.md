@@ -7,9 +7,9 @@ project_slug: "llm-knowledge-base-system"
 agent: "Codex"
 session_id: "<session-2026-04-26-2341>"
 started: "2026-04-26 23:41"
-last_updated: "2026-04-27 00:02"
+last_updated: "2026-04-27 00:26"
 status: "open"
-prompt_count: 4
+prompt_count: 8
 merge_review_status: "not_needed"
 tags:
   - commit
@@ -68,16 +68,62 @@ tags:
 - Outcome: `C:\Users\micha\Projects\distributions\LLMKnowledgeBase1.0` now contains a self-consistent portable copy with only the intended project content and regenerated derived files.
 - Follow-up impact: if this export pattern becomes recurring, the next improvement should be a scripted release/export workflow instead of manual assembly.
 
+### Prompt 05 - 2026-04-27 00:10
+- User request: scrap the temporary distribution, delete that folder, turn the live vault into the GitHub repo `LLMKnowledgeBase`, configure `.gitignore` around the intended GitHub distribution surface, push the current state to `main`, and adopt a `dev`-by-default publishing workflow on the host machine.
+- Action: removed the temporary distribution folder, added a vault-specific `.gitignore`, updated the shared protocol files with git publishing rules, recorded the `dev`/`main` policy as a global learned note, and recorded that this machine can write to the canonical GitHub repo as a machine-scoped learned note.
+- Reason: the user wants the live vault itself to become the canonical GitHub-backed distribution surface instead of maintaining a separate export folder.
+- Commands / tools: deleted the distribution tree with PowerShell; patched `.gitignore`, `AGENTS.md`, `CLAUDE.md`, and learned notes.
+- Files / notes touched: `.gitignore`, `AGENTS.md`, `CLAUDE.md`, `Projects/llm-knowledge-base-system/Learned/2026-04-27 0018 - github-publishing-uses-dev-and-main-release-gates.md`, `Machines/MICHAEL-ROG/Learned/2026-04-27 0018 - canonical-github-repo-is-writable-from-this-machine.md`, this commit thread, and `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`.
+- Scope impact: introduces a durable repository publishing workflow that now affects how vault-wide tracked changes should be versioned and published.
+- Outcome: the vault protocol now distinguishes tracked GitHub-distribution content from ignored local-only content, and the temporary distribution folder has been discarded.
+- Follow-up impact: the live repo still needed local git initialization, remote merge, and branch setup before the publishing workflow could be exercised.
+
+### Prompt 06 - 2026-04-27 00:12
+- User request: ask whether local git initialization can be done here or whether it must be done manually.
+- Action: confirmed that local git initialization could be handled directly from this session and explained that the only remaining uncertainty was remote creation and push wiring.
+- Reason: the user wanted to know whether the local repository bootstrap itself was blocked.
+- Commands / tools: used already gathered git and repo context; no file edits were made for this advisory response.
+- Files / notes touched: none.
+- Scope impact: no protocol change; this only clarified execution capability.
+- Outcome: established that the local repo bootstrap could proceed inside this session.
+- Follow-up impact: once the remote details were confirmed, the remaining work was straightforward repo wiring.
+
+### Prompt 07 - 2026-04-27 00:15
+- User request: provide evidence that this machine can clone from and push to the GitHub repo and direct the agent to make the live vault folder the actual GitHub repo.
+- Action: used the user-provided successful clone, commit, and push transcript as evidence of host-machine repo access, then initialized git in the live vault, attached `origin`, fetched the existing remote, committed the current vault state locally, merged the remote bootstrap, replaced the remote starter `.gitignore` with the vault-specific one, and restored `README.md` so the repo describes the vault instead of the placeholder remote setup.
+- Reason: the user has already verified GitHub connectivity and now wants the live vault directory itself to become the canonical repository checkout.
+- Commands / tools: `git init -b main`, `git remote add origin https://github.com/MichaelMa907/LLMKnowledgeBase.git`, `git fetch origin`, `git add .`, `git commit`, `git merge origin/main --allow-unrelated-histories --no-edit`, and markdown patches for `.gitignore` conflict resolution plus `README.md`.
+- Files / notes touched: `.gitignore`, `README.md`, local `.git/` metadata, this commit thread, and `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`.
+- Scope impact: converts the live vault folder into the canonical git working tree for the knowledge base.
+- Outcome: the local vault is now an initialized git repository connected to `origin`, with the remote bootstrap merged into local history and the repo content reflecting the vault rather than the placeholder remote setup.
+- Follow-up impact: the remaining publishing steps were to refresh generated views, commit the new project-state notes, push `main`, create `dev`, and push that branch.
+
+### Prompt 08 - 2026-04-27 00:26
+- User request: continue and finish the repo conversion.
+- Action: updated the project records to replace the abandoned distribution-folder state with the live git-backed workflow, regenerated the vault indexes from the final note set, and prepared the repository for the initial `main` and `dev` pushes.
+- Reason: the repo should reflect the stable post-distribution design, not a superseded temporary export path.
+- Commands / tools: patched `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`, this commit thread, and `README.md`; then reran `node Scripts/update-knowledge-base.mjs` before the final branch pushes.
+- Files / notes touched: `README.md`, this commit thread, `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`, and generated views refreshed from the updated notes.
+- Scope impact: aligns the recorded stable state of the vault with the actual git-backed publishing workflow now in use.
+- Outcome: the knowledge base now records the repository-backed model as the stable workflow and is ready for the initial branch publication.
+- Follow-up impact: after the branch pushes, future tracked vault-wide changes on the host machine should flow to `dev` by default unless the user explicitly requests a `main` release.
+
 ## Scope Notes
 - Global notes created or updated:
   `Projects/llm-knowledge-base-system/Learned/2026-04-26 2341 - portable-bootstrap-excludes-project-and-machine-data.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-26 2349 - updater-script-is-relocatable-with-the-vault.md`
-- Machine notes created or updated: none.
+  `Projects/llm-knowledge-base-system/Learned/2026-04-27 0018 - github-publishing-uses-dev-and-main-release-gates.md`
+- Machine notes created or updated:
+  `Machines/MICHAEL-ROG/Learned/2026-04-27 0018 - canonical-github-repo-is-writable-from-this-machine.md`
 - Project notes created or updated:
   `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`
+  `AGENTS.md`
+  `CLAUDE.md`
+  `.gitignore`
+  `README.md`
 
 ## Handoff / Closeout
-- Current state: the vault now has an explicit portability rule, a verified note that the updater script remains valid after moving the whole vault to a new folder, and a concrete release at `C:\Users\micha\Projects\distributions\LLMKnowledgeBase1.0` containing only the bootstrap plus the knowledge-base-system project.
-- Open issues: some durable system rationale still lives inside the `llm-knowledge-base-system` project, so a perfectly clean no-project bootstrap is still a design tradeoff rather than a fully separated packaging mode, and the release/export process is still manual.
-- Suggested next prompt: if you want, the next step is to turn this exact release layout into an export script that can build future versions automatically.
+- Current state: the live vault is now the canonical git working tree for `MichaelMa907/LLMKnowledgeBase`, `.gitignore` defines the public distribution surface, and the publishing rule is `dev` for routine tracked host-machine changes and `main` only for explicit user-directed releases.
+- Open issues: some durable system rationale still lives inside the `llm-knowledge-base-system` project rather than a non-project bootstrap area, and release automation beyond branch pushes still does not exist.
+- Suggested next prompt: if you want, the next step is to automate the `dev`-branch commit/push workflow or add a scripted release process for explicit `main` publications.
 - Before closing this commit, update `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md` and run `node Scripts/update-knowledge-base.mjs` with the changed roots for this prompt.

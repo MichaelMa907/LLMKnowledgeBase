@@ -5,16 +5,16 @@ project_id: "2026-04-26-minecraft-shaders-mod-setup"
 project_slug: "minecraft-shaders-mod-setup"
 project_type: "task"
 created: "2026-04-26 23:30"
-last_active: "2026-04-26 23:35"
-last_session: "2026-04-26 23:35"
+last_active: "2026-04-27 00:28"
+last_session: "2026-04-27 00:28"
 resolved: false
 status: "active"
-sessions_count: 1
-commit_threads_count: 1
-total_prompt_entries: 3
+sessions_count: 2
+commit_threads_count: 2
+total_prompt_entries: 4
 project_folder: "Projects/minecraft-shaders-mod-setup/"
 learned_folder: "Projects/minecraft-shaders-mod-setup/Learned/"
-current_commit_thread: "Projects/minecraft-shaders-mod-setup/Commits/2026-04-26 2330 - initial-assessment.md"
+current_commit_thread: "Projects/minecraft-shaders-mod-setup/Commits/2026-04-27 0028 - mod-safety-check.md"
 matching_mode: "default_new_unless_explicit_continue"
 scope_summary: "Assess a Fabric Minecraft client setup for smooth shader-heavy play with many mods, texture packs, and Distant Horizons."
 reuse_when: "Reuse when continuing this same Minecraft client optimization and mod-stack setup."
@@ -63,9 +63,9 @@ tags:
 - Identify the most important remaining upgrades and risks.
 
 ## Current State
-- Stable state right now: The client already has the main Fabric performance core: `Sodium`, `Lithium`, `FerriteCore`, `EntityCulling`, `Iris`, and supporting dependencies.
-- What changed this session: Created a project record, assessed the visible mod stack against the user's stated goal of heavy shaders, textures, and mods, and checked current documentation for `ImmediatelyFast`, `Noisium`, and `ModernFix`.
-- Remaining risk: The stack is not fully optimized yet for an aggressive visual setup, and `Distant Horizons` plus demanding shaders may be the main limiter even with good base optimization mods.
+- Stable state right now: The client already has the main Fabric performance core: `Sodium`, `Lithium`, `FerriteCore`, `EntityCulling`, `Iris`, and supporting dependencies. Fresh source checks show `ImmediatelyFast` is active, `ModernFix` is still actively published on the original project for Fabric `1.21.1`, and `Noisium` is the mod where the maintained fork matters.
+- What changed this session: Created a follow-up session thread and verified current support status, version availability, and practical usefulness of `ImmediatelyFast`, `ModernFix`, and the maintained `Noisium` forks for a shader-heavy Fabric `1.21.1` setup.
+- Remaining risk: `Noisium`-style worldgen optimizers are more situational than render optimizers, and the biggest practical performance variable is still the `Distant Horizons` plus shader-pack combination rather than these three mods themselves.
 
 ## Resolution
 - Current resolution state: Unresolved but clearly scoped.
@@ -81,6 +81,7 @@ tags:
 | Session Start | Last Prompt | Agent | Session ID | Commit Thread | Prompt Count | Status | Summary |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-04-26 23:30 | 2026-04-26 23:35 | Codex | `codex-minecraft-shaders-mod-setup-20260426-2330` | [[Projects/minecraft-shaders-mod-setup/Commits/2026-04-26 2330 - initial-assessment]] | 3 | open | Assessed the visible Fabric performance stack and checked compatibility of additional optimization mods |
+| 2026-04-27 00:28 | 2026-04-27 00:28 | Codex | `codex-minecraft-shaders-mod-setup-20260427-0028` | [[Projects/minecraft-shaders-mod-setup/Commits/2026-04-27 0028 - mod-safety-check]] | 1 | open | Re-checked current support and usefulness of ImmediatelyFast, ModernFix, and Noisium-family mods from current primary sources |
 
 ## Progress
 ### Session 2026-04-26 - Codex - codex-minecraft-shaders-mod-setup-20260426-2330
@@ -89,8 +90,15 @@ tags:
 - [23:30] Identified the main gap: the stack is good, but not yet "done" for a heavy shaders plus texture packs plus many mods target.
 - [23:35] Verified from current mod documentation that `ImmediatelyFast`, `Noisium`, and `ModernFix` are generally compatible performance mods for this Fabric setup, with the main caveat that shader and `Distant Horizons` behavior still depends on version and shader-pack support.
 
+### Session 2026-04-27 - Codex - codex-minecraft-shaders-mod-setup-20260427-0028
+- [00:28] Started [[Projects/minecraft-shaders-mod-setup/Commits/2026-04-27 0028 - mod-safety-check]] for a fresh source-based recheck.
+- [00:28] Confirmed `ImmediatelyFast` remains actively maintained for Fabric `1.21.1`.
+- [00:28] Confirmed `ModernFix` does not require a fork for Fabric `1.21.1`; the original project still has recent `1.21.1` releases.
+- [00:28] Confirmed the original `Noisium` is no longer the safest recommendation, and a maintained fork is the current path if you want that category of optimization.
+
 ## Commit Threads
 - [[Projects/minecraft-shaders-mod-setup/Commits/2026-04-26 2330 - initial-assessment]] - open - 2026-04-26 23:30
+- [[Projects/minecraft-shaders-mod-setup/Commits/2026-04-27 0028 - mod-safety-check]] - open - 2026-04-27 00:28
 
 ## Scope Notes
 - Global notes that affect this project:

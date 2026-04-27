@@ -7,9 +7,9 @@ project_slug: "hotspot-privacy"
 agent: "Codex"
 session_id: "codex-20260426-2331"
 started: "2026-04-26 23:31"
-last_updated: "2026-04-27 00:11"
+last_updated: "2026-04-27 00:28"
 status: "open"
-prompt_count: 6
+prompt_count: 8
 merge_review_status: "not_needed"
 tags:
   - commit
@@ -87,6 +87,26 @@ tags:
 - Scope impact: Project
 - Outcome: Established that the Ethernet interface appearing on Windows simply reflects USB tether activation, not a guarantee of better speed.
 - Follow-up impact: The next useful step is troubleshooting whether the slowdown comes from PairVPN tunnel mode, iPhone power state, cable/USB link quality, or plain cellular variability.
+
+### Prompt 07 - 2026-04-27 00:25
+- User request: "nvm i take that back. it looks like pairvpn auto shuts off when not attended to for a while. how do i fix, i think its more of a iphone issue. terminux get around this by enabling location services or something. do you know whats going on"
+- Action: Verified PairVPN's own hotspot warning and Apple's current background-execution and background-location documentation.
+- Reason: The revised symptom points to iPhone app-lifecycle limits rather than transport throughput.
+- Commands / tools: Web search for PairVPN hotspot page and Apple developer docs.
+- Files / notes touched: `Projects/hotspot-privacy/hotspot-privacy.md`; `Projects/hotspot-privacy/Commits/2026-04-26 2331 - initial-hotspot-routing-research.md`
+- Scope impact: Project
+- Outcome: Confirmed that iOS normally suspends most background apps shortly after backgrounding, and PairVPN explicitly warns that the iPhone server must stay active with the screen on.
+- Follow-up impact: The next useful step is giving the user practical mitigations and setting expectations that there is no user-side toggle to exempt PairVPN from these iOS limits.
+
+### Prompt 08 - 2026-04-27 00:28
+- User request: "pait vpn do have a share location setting. use it?"
+- Action: Verified PairVPN's App Store metadata and version history for location usage and correlated that with Apple's background-location behavior.
+- Reason: The user identified a likely keep-alive setting and needs to know whether it is relevant.
+- Commands / tools: Web search for PairVPN App Store listing and Apple background-location docs.
+- Files / notes touched: `Projects/hotspot-privacy/hotspot-privacy.md`; `Projects/hotspot-privacy/Commits/2026-04-26 2331 - initial-hotspot-routing-research.md`
+- Scope impact: Project
+- Outcome: Confirmed that PairVPN likely uses background location as a workaround to stay alive longer on iPhone, so enabling Share Location is reasonable if the goal is keeping the tunnel up longer.
+- Follow-up impact: The next useful step is telling the user exactly which iOS permission choice to allow and what tradeoffs to expect.
 
 ## Scope Notes
 - Global notes created or updated:

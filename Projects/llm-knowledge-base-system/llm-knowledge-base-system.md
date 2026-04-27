@@ -5,13 +5,13 @@ project_id: "2026-04-20-llm-knowledge-base-system"
 project_slug: "llm-knowledge-base-system"
 project_type: "system"
 created: "2026-04-20 22:28"
-last_active: "2026-04-27 00:02"
-last_session: "2026-04-27 00:02"
+last_active: "2026-04-27 00:26"
+last_session: "2026-04-27 00:26"
 resolved: false
 status: "active"
 sessions_count: 4
 commit_threads_count: 4
-total_prompt_entries: 27
+total_prompt_entries: 31
 project_folder: "Projects/llm-knowledge-base-system/"
 learned_folder: "Projects/llm-knowledge-base-system/Learned/"
 current_commit_thread: "Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects.md"
@@ -72,9 +72,9 @@ tags:
 - Shared instructions for Codex and Claude match the same workflow.
 
 ## Current State
-- Stable state right now: learned notes stay in their origin project or machine folders; notes marked `global: true` are surfaced in `Globals/globalIndex.md` rather than being moved; a cross-platform Node updater maintains generated root/global/machine/project learned indexes from changed roots; the Markdown indexes are the human-facing outputs; the JSON state file is only an internal incremental cache rather than source-of-truth content; new-session retrieval is explicitly targeted rather than full replay; the vault now also has a canonical `User/User.md` profile that is small enough to read at session start; wiki links are constrained to a simple graph where `activeProjects` and `inactiveProjects` group projects, then projects link to commits, and commits link to learned notes; the two generated project-list hub pages now also end with `[[Templates/Project|Project]]` so they connect to the shared project-template node; reusable workflows fit the system as workflow projects with front-page canonical procedures rather than needing a separate subsystem; template files now show placeholder wiki-link syntax in backticks so they do not create phantom graph nodes; every project folder is expected to include a user-owned `MichaelsNotes/` directory that agents must not modify unless the user explicitly asks; the most important vault-editing invariants are stated directly in `AGENTS.md` and `CLAUDE.md` instead of living only in learned notes; a portable blank-instance bootstrap currently consists of protocol files, templates, the updater script, and optional user/UI config, while generated indexes, the JSON state cache, old machine notes, and ordinary projects are data to omit or regenerate; and the updater script itself is folder-relocatable because it derives the vault root from its own location instead of one hard-coded absolute path.
-- What changed this session: the project now explicitly distinguishes the reusable bootstrap from user-specific project and machine data for cross-machine setup, records the current caveat that some system rationale still lives under the `llm-knowledge-base-system` project, confirms that moving the whole vault folder does not break the updater logic, and now has a concrete portable release at `C:\Users\micha\Projects\distributions\LLMKnowledgeBase1.0` containing only the bootstrap plus this project with regenerated derived views.
-- Remaining risk: the system still depends on agents correctly choosing scope, asking before merging overlapping projects, passing the correct changed roots to the updater script, proving on a real workflow project that the front-page `Workflow` and `Resolution` structure is enough without more workflow-specific metadata, deciding whether `project_type` should become a formally enumerated taxonomy instead of partly implicit usage, eventually adding project-creation automation so `MichaelsNotes/` is created mechanically instead of only by instruction, deciding whether system-level learned truths should move into a dedicated non-project bootstrap area for cleaner no-project portability, and turning the current manual release assembly into a repeatable export workflow.
+- Stable state right now: learned notes stay in their origin project or machine folders; notes marked `global: true` are surfaced in `Globals/globalIndex.md` rather than being moved; a cross-platform Node updater maintains generated root/global/machine/project learned indexes from changed roots; the Markdown indexes are the human-facing outputs; the JSON state file is only an internal incremental cache rather than source-of-truth content; new-session retrieval is explicitly targeted rather than full replay; the vault now also has a canonical `User/User.md` profile that is small enough to read at session start; wiki links are constrained to a simple graph where `activeProjects` and `inactiveProjects` group projects, then projects link to commits, and commits link to learned notes; the two generated project-list hub pages now also end with `[[Templates/Project|Project]]` so they connect to the shared project-template node; reusable workflows fit the system as workflow projects with front-page canonical procedures rather than needing a separate subsystem; template files now show placeholder wiki-link syntax in backticks so they do not create phantom graph nodes; every project folder is expected to include a user-owned `MichaelsNotes/` directory that agents must not modify unless the user explicitly asks; the most important vault-editing invariants are stated directly in `AGENTS.md` and `CLAUDE.md` instead of living only in learned notes; the updater script is folder-relocatable because it derives the vault root from its own location instead of one hard-coded absolute path; the live vault folder is now the canonical git working tree for `https://github.com/MichaelMa907/LLMKnowledgeBase`; `.gitignore` now defines the public GitHub distribution surface; and tracked vault-wide changes on a machine with canonical repo access now publish to `dev` by default while `main` is reserved for explicit user-directed releases.
+- What changed this session: the temporary distribution-folder approach was discarded; the live vault itself was converted into the canonical GitHub repository checkout; the remote bootstrap was merged into local history; `.gitignore`, `AGENTS.md`, and `CLAUDE.md` were aligned to the public distribution surface and branch policy; and the repo workflow now treats `dev` as the default publish target for tracked host-machine changes and `main` as the explicit release branch.
+- Remaining risk: the system still depends on agents correctly choosing scope, asking before merging overlapping projects, passing the correct changed roots to the updater script, proving on a real workflow project that the front-page `Workflow` and `Resolution` structure is enough without more workflow-specific metadata, deciding whether `project_type` should become a formally enumerated taxonomy instead of partly implicit usage, eventually adding project-creation automation so `MichaelsNotes/` is created mechanically instead of only by instruction, deciding whether system-level learned truths should move into a dedicated non-project bootstrap area for cleaner no-project portability, and deciding whether git publication should remain manual or gain scripted automation for `dev` syncs and explicit `main` releases.
 
 ## Resolution
 - Current resolution state: unresolved
@@ -86,12 +86,13 @@ tags:
 - Keep `User/User.md` curated and under its intended size cap by merging overlap instead of letting it turn into a general-purpose memory dump.
 - If more graph-shaping footer or hub links are added later, keep them generator-owned instead of hand-editing generated files.
 - Decide whether to separate system-level learned truths from the `llm-knowledge-base-system` project so a fresh machine can inherit the full bootstrap without copying any project folder.
-- If portable releases become normal, add an export script that builds the exact release layout automatically instead of assembling it manually.
+- Decide later whether explicit release exports beyond the GitHub repo are still useful, or whether the repo itself is now the only distribution surface that matters.
 - If project scaffolding automation is introduced later, make it create `MichaelsNotes/` automatically rather than relying only on written agent instructions.
 - Dogfood the incremental updater on more real projects and confirm that the changed-root workflow stays reliable.
 - Decide later whether `global: true` should drive any automatic loading behavior beyond indexing.
 - Add more global notes only when a rule clearly needs cross-project precedence.
 - If Codex or Claude gets a new local instruction surface, skill, or MCP, record it in the agent protocol file and the right scoped learned note.
+- Decide whether to automate the default host-machine `dev` commit/push workflow or keep it manual.
 - Decide whether the incremental JSON cache earns its keep or whether a simpler full-rescan model is acceptable in practice.
 - Decide whether session-start retrieval should stay lightweight or whether agents should automatically preload a small number of high-importance global notes before acting.
 - Verify that the simplified wiki-link policy keeps the Obsidian graph readable once more projects and sessions exist.
@@ -104,7 +105,7 @@ tags:
 ## Session Index
 | Session Start | Last Prompt | Agent | Session ID | Commit Thread | Prompt Count | Status | Summary |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-04-26 23:41 | 2026-04-27 00:02 | Codex | `<session-2026-04-26-2341>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects]] | 4 | open | Defined the current cross-machine bootstrap boundary, verified that the updater script remains valid after moving the whole vault to a new folder, reaffirmed the rule for promoting critical vault invariants into the protocol files, and produced the first portable `LLMKnowledgeBase1.0` release |
+| 2026-04-26 23:41 | 2026-04-27 00:26 | Codex | `<session-2026-04-26-2341>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects]] | 8 | open | Defined the cross-machine bootstrap boundary, verified that the updater script remains relocatable, reaffirmed the rule for promoting critical vault invariants into the protocol files, discarded the temporary distribution-folder approach, and converted the live vault into the canonical GitHub repo with `dev` for routine tracked changes and `main` for explicit releases |
 | 2026-04-21 21:05 | 2026-04-21 22:57 | Codex | `<session-2026-04-21-2105>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-21 2105 - michaelsnotes-user-owned-project-folders]] | 6 | open | Added cross-vault `MichaelsNotes/` rules, centralized critical vault-editing conventions, added a canonical cross-agent `User/User.md`, and made both generated project-list hubs keep the shared `Project` footer link |
 | 2026-04-21 00:31 | 2026-04-21 01:37 | Codex | `<current-session>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-21 0031 - workflow-projects-for-reusable-procedures]] | 6 | closed | Promoted workflow projects into the shared protocol, clarified current `project_type` usage, drafted a minimal user-facing workflow prompt, and fixed template placeholder wikilinks so they stop creating phantom graph nodes |
 | 2026-04-20 22:28 | 2026-04-21 00:24 | Codex | `<session-2026-04-20-2228>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-20 2228 - tiered-memory-and-indexing]] | 11 | closed | Added scoped truth storage, starter notes, a machine-scoped record of the live Codex instruction entrypoint, clarified the project-note read path, verified learned-note storage, replaced the PowerShell generator with an incremental Node updater, corrected `global: true` to mean indexed globally rather than stored globally, simplified wiki links for a readable graph, and restored active/inactive project hubs |
@@ -114,7 +115,8 @@ tags:
 - [23:41] Verified from the live repository that the reusable cross-machine bootstrap is the protocol plus generator layer, while generated indexes, old machine notes, and ordinary project folders are data that should usually be left behind or regenerated.
 - [23:49] Verified from the updater code that the vault can be moved to a different parent folder without breaking core indexing, because the script computes `vaultRoot` from its own location and normalizes changed paths relative to that root.
 - [23:54] Reconfirmed that only high-impact cross-vault editing invariants must be promoted into both `AGENTS.md` and `CLAUDE.md`; ordinary durable facts can remain in learned notes at the appropriate scope.
-- [00:02] Built `C:\Users\micha\Projects\distributions\LLMKnowledgeBase1.0` as a portable release containing the vault bootstrap plus only `Projects/llm-knowledge-base-system`, scrubbed the copied protocol of source-machine assumptions, and regenerated the release from its own contents.
+- [00:18] Discarded the temporary distribution-folder approach, added a vault-specific `.gitignore`, and recorded the new GitHub publishing policy that uses `dev` for routine tracked host-machine changes and `main` only for explicit releases.
+- [00:26] Converted the live vault folder into the canonical `MichaelMa907/LLMKnowledgeBase` git working tree, merged the remote bootstrap, replaced the placeholder repo files with vault-specific ones, and aligned the project state to the new git-backed publishing workflow.
 
 ### Session 2026-04-21 - Codex - <session-2026-04-21-2105>
 - [21:05] Added a nonnegotiable cross-vault rule that every project folder must include `MichaelsNotes/`, that agents may read it when useful but must never modify it without explicit user instruction, and that the folder is not part of mandatory default retrieval.
@@ -173,9 +175,11 @@ tags:
   `Projects/llm-knowledge-base-system/Learned/2026-04-21 2257 - project-list-pages-end-with-project-template-link.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-26 2341 - portable-bootstrap-excludes-project-and-machine-data.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-26 2349 - updater-script-is-relocatable-with-the-vault.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-04-27 0018 - github-publishing-uses-dev-and-main-release-gates.md`
 - Machine notes that affect this project:
   `Machines/MICHAEL-ROG/Learned/2026-04-20 - node-is-the-knowledge-base-runtime.md`
   `Machines/MICHAEL-ROG/Learned/2026-04-20 2307 - codex-instruction-entrypoint-is-vault-agents.md`
+  `Machines/MICHAEL-ROG/Learned/2026-04-27 0018 - canonical-github-repo-is-writable-from-this-machine.md`
 - Project-scoped learned notes:
   `Projects/llm-knowledge-base-system/Learned/2026-04-21 0031 - reusable-workflows-can-start-as-projects.md`
 - Learned notes stored in this project:
@@ -194,4 +198,5 @@ tags:
   `Projects/llm-knowledge-base-system/Learned/2026-04-21 2257 - project-list-pages-end-with-project-template-link.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-26 2341 - portable-bootstrap-excludes-project-and-machine-data.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-26 2349 - updater-script-is-relocatable-with-the-vault.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-04-27 0018 - github-publishing-uses-dev-and-main-release-gates.md`
 - Generated learned view: `Projects/llm-knowledge-base-system/learnedIndex.md`

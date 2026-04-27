@@ -5,13 +5,13 @@ project_id: "2026-04-26-hotspot-privacy"
 project_slug: "hotspot-privacy"
 project_type: "task"
 created: "2026-04-26 23:31"
-last_active: "2026-04-27 00:11"
-last_session: "2026-04-27 00:11"
+last_active: "2026-04-27 00:28"
+last_session: "2026-04-27 00:28"
 resolved: false
 status: "active"
 sessions_count: 1
 commit_threads_count: 1
-total_prompt_entries: 6
+total_prompt_entries: 8
 project_folder: "Projects/hotspot-privacy/"
 learned_folder: "Projects/hotspot-privacy/Learned/"
 current_commit_thread: "Projects/hotspot-privacy/Commits/2026-04-26 2331 - initial-hotspot-routing-research.md"
@@ -79,8 +79,8 @@ tags:
 - The explanation includes privacy limits.
 
 ## Current State
-- Stable state right now: The PairVPN setup is working. The computer is still using the iPhone hotspot as the underlying link, while PairVPN overlays a local tunnel on top of that link so the phone proxies the traffic. For iPhone USB tethering, Personal Hotspot still needs to be enabled because USB is just another connection method for the hotspot service. Switching the computer to the USB-tethered Ethernet interface did not automatically improve throughput and in this case made performance worse.
-- What changed this session: Created the project record, researched current tethering and tunnel options, answered the initial routing question, confirmed PairVPN mode direction from the vendor FAQ, confirmed the hotspot-specific setup order from the vendor hotspot page, explained the difference between the underlying hotspot transport and the overlay tunnel, clarified that USB tethering still relies on Personal Hotspot being on, and recorded that USB tethering can be slower in practice.
+- Stable state right now: The PairVPN setup works while attended, but the likely failure mode is iPhone background suspension of the PairVPN server app. PairVPN's hotspot page explicitly says to keep the iPhone PairVPN server active and avoid turning off the screen because iOS terminates background apps other than approved GPS, VOIP, or audio cases. PairVPN's App Store listing also indicates it may use location when not open, and the version history says it added location sharing while connected, which strongly suggests the Share Location setting is meant as a keep-alive workaround.
+- What changed this session: Created the project record, researched current tethering and tunnel options, answered the initial routing question, confirmed PairVPN mode direction from the vendor FAQ, confirmed the hotspot-specific setup order from the vendor hotspot page, explained the difference between the underlying hotspot transport and the overlay tunnel, clarified that USB tethering still relies on Personal Hotspot being on, recorded that USB tethering can be slower in practice, identified iPhone background-app suspension as the likely cause of the later slowdown/disconnect behavior, and verified that PairVPN appears to use background location as a workaround.
 - Remaining risk: The user may still mean browser/device fingerprint indistinguishability rather than only network-path indistinguishability, which would require different mitigations.
 
 ## Resolution
@@ -92,6 +92,7 @@ tags:
 - Refine the advice if the user clarifies whether they care about websites, local network observers, or someone physically inspecting devices.
 - If needed, give exact setup steps for Personal Hotspot versus PairVPN.
 - If needed, diagnose why USB tethering is slower on this setup by comparing radio conditions, tunnel mode, and CPU/battery behavior on the iPhone.
+- If needed, suggest practical ways to keep the iPhone-side app active, or advise switching to a platform that supports unattended background VPN/proxy behavior more reliably.
 
 ## Session Index
 | Session Start | Last Prompt | Agent | Session ID | Commit Thread | Prompt Count | Status | Summary |
@@ -106,6 +107,8 @@ tags:
 - [23:38] Recorded that PairVPN working does not replace the hotspot transport itself: Wi-Fi hotspot remains the visible local link unless the user switches to USB tethering, which may improve speed and stability.
 - [23:40] Clarified that on iPhone, USB tethering still uses Personal Hotspot, so hotspot must be enabled even when the physical connection is by cable.
 - [00:11] Recorded the user's result that USB tethering switched the computer to an Ethernet interface but slowed performance, confirming that USB is not inherently faster in this setup.
+- [00:25] Identified the more likely issue as iPhone background suspension of PairVPN rather than raw bandwidth limits, using PairVPN's own warning and Apple's background-execution rules.
+- [00:28] Verified that PairVPN's Share Location option is likely intended to keep the iPhone-side app alive longer in the background by using iOS background-location privileges.
 
 ## Commit Threads
 - [[Projects/hotspot-privacy/Commits/2026-04-26 2331 - initial-hotspot-routing-research]] - open - 2026-04-26 23:31
