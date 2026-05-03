@@ -25,7 +25,7 @@ tags:
 >
 > Keep placeholder link examples in backticks inside template files so Obsidian does not create phantom graph nodes from template text.
 >
-> Replace those backticked examples with bare real wiki links when instantiating an actual commit note. Do not leave the backticks in place around live links.
+> Replace the project placeholder with one bare real wiki link when instantiating an actual commit note. Commit notes should not contain other live wiki links.
 
 ## Session Context
 - Project: `[[Projects/<project-slug>/<project-slug>]]` in the template only; instantiated commit notes must use bare `[[...]]` without backticks

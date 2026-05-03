@@ -5,16 +5,16 @@ project_id: "2026-04-20-llm-knowledge-base-system"
 project_slug: "llm-knowledge-base-system"
 project_type: "system"
 created: "2026-04-20 22:28"
-last_active: "2026-04-27 01:54"
-last_session: "2026-04-27 01:54"
+last_active: "2026-05-03 11:23"
+last_session: "2026-05-03 11:23"
 resolved: false
 status: "active"
-sessions_count: 5
-commit_threads_count: 5
-total_prompt_entries: 34
+sessions_count: 7
+commit_threads_count: 7
+total_prompt_entries: 37
 project_folder: "Projects/llm-knowledge-base-system/"
 learned_folder: "Projects/llm-knowledge-base-system/Learned/"
-current_commit_thread: "Projects/llm-knowledge-base-system/Commits/2026-04-27 0127 - starter-release-surface-cleanup.md"
+current_commit_thread: "Projects/llm-knowledge-base-system/Commits/2026-05-03 1123 - graph-wikilink-audit-cleanup.md"
 matching_mode: "default_new_unless_explicit_continue"
 scope_summary: "Architecture, automation, and truth-model design for the shared Obsidian memory system itself."
 reuse_when: "Reuse this project when changing the vault architecture, templates, truth precedence, generator script, or shared agent instructions."
@@ -72,9 +72,9 @@ tags:
 - Shared instructions for Codex and Claude match the same workflow.
 
 ## Current State
-- Stable state right now: learned notes stay in their origin project or machine folders; notes marked `global: true` are surfaced in `Globals/globalIndex.md` rather than being moved; a cross-platform Node updater maintains generated root/global/machine/project learned indexes from changed roots; the Markdown indexes are the human-facing outputs; the JSON state file is only an internal incremental cache rather than source-of-truth content; new-session retrieval is explicitly targeted rather than full replay; the vault now also has a canonical `User/User.md` profile that is small enough to read at session start; wiki links are constrained to a simple graph where `activeProjects` and `inactiveProjects` group projects, then projects link to commits, and commits link to learned notes; the two generated project-list hub pages now also end with `[[Templates/Project|Project]]` so they connect to the shared project-template node; reusable workflows fit the system as workflow projects with front-page canonical procedures rather than needing a separate subsystem; template files now show placeholder wiki-link syntax in backticks so they do not create phantom graph nodes; every project folder is expected to include a user-owned `MichaelsNotes/` directory that agents must not modify unless the user explicitly asks; the most important vault-editing invariants are stated directly in `AGENTS.md` and `CLAUDE.md` instead of living only in learned notes; the updater script is folder-relocatable because it derives the vault root from its own location instead of one hard-coded absolute path; `.gitignore` now defines the public GitHub distribution surface; the public repo is now intended to be a starter-vault release with `Projects/llm-knowledge-base-system/` included as the system reference/sample project rather than a mirror of one machine's live data; the README now documents clone setup, agent entrypoint wiring, local user/machine notes, and the full rebuild command that generates ignored indexes such as `Globals/globalIndex.md`; and tracked starter-surface changes on a machine with canonical repo access now publish to `dev` by default while `main` is reserved for explicit user-directed releases.
-- What changed this session: the tracked repo surface was audited against the intended release boundary; `.gitignore`, `AGENTS.md`, `CLAUDE.md`, and `README.md` were tightened to a starter-vault release model; tracked ordinary `Projects/`, machine notes, user profile data, Obsidian config, and generated root/global/cache files were removed from git with `--cached` so they remain local but stop publishing; `Projects/llm-knowledge-base-system/` was restored to the tracked release surface as the intended system reference and sample project; and README setup instructions plus PowerShell/batch setup wrappers were added so new users can generate local indexes and point agents at the cloned vault.
-- Remaining risk: the system still depends on agents correctly choosing scope, asking before merging overlapping projects, passing the correct changed roots to the updater script, proving on a real workflow project that the front-page `Workflow` and `Resolution` structure is enough without more workflow-specific metadata, deciding whether `project_type` should become a formally enumerated taxonomy instead of partly implicit usage, eventually adding project-creation automation so `MichaelsNotes/` is created mechanically instead of only by instruction, deciding whether system-level learned truths should move into a dedicated non-project bootstrap area for cleaner no-project portability, deciding whether the included system reference project needs sanitization or trimming over time, and deciding whether git publication should remain manual or gain scripted automation for `dev` syncs and explicit `main` releases.
+- Stable state right now: learned notes stay in their origin project or machine folders; notes marked `global: true` are surfaced in `Globals/globalIndex.md` rather than being moved; a cross-platform Node updater maintains generated root/global/machine/project learned indexes from changed roots; the Markdown indexes are the human-facing outputs; the JSON state file is only an internal incremental cache rather than source-of-truth content; new-session retrieval is explicitly targeted rather than full replay; the vault now also has a canonical `User/User.md` profile that is small enough to read at session start; live wiki links are constrained to the graph surfaces the user should see: generated project-list pages link project notes, commit notes link only their parent project, learned notes link only one origin commit, and richer provenance stays as plain paths; `Scripts/audit-wikilinks.mjs` verifies that invariant; reusable workflows fit the system as workflow projects with front-page canonical procedures rather than needing a separate subsystem; template files now show placeholder wiki-link syntax in backticks so they do not create phantom graph nodes; every project folder is expected to include a user-owned `MichaelsNotes/` directory that agents must not modify unless the user explicitly asks; the most important vault-editing invariants are stated directly in `AGENTS.md` and `CLAUDE.md` instead of living only in learned notes; the updater script is folder-relocatable and now tolerates a leading UTF-8 BOM before frontmatter; `.gitignore` now defines the public GitHub distribution surface; the public repo is now intended to be a starter-vault release with `Projects/llm-knowledge-base-system/` included as the system reference/sample project rather than a mirror of one machine's live data; ordinary personal/external projects must stay in their own folders and should not be created under this public repo by default; the README documents clone setup, agent entrypoint wiring, local user/machine notes, and the full rebuild command; and tracked starter-surface changes on a machine with canonical repo access publish to `dev` by default while `main` is reserved for explicit user-directed releases.
+- What changed this session: traced the bad graph to overly permissive live wikilinks, tightened the rules in `AGENTS.md`, `CLAUDE.md`, and the templates, added `Scripts/audit-wikilinks.mjs`, converted existing project-note commit links and extra provenance links to plain paths, updated the global graph learned note, created the missing `Projects/temp-artifact-location-preference/MichaelsNotes/` folder while touching that legacy project, and made the updater tolerate a leading UTF-8 BOM after a PowerShell rewrite briefly made the generated project lists empty.
+- Remaining risk: the system still depends on agents correctly choosing scope, asking before merging overlapping projects, passing the correct changed roots to the updater script, proving on a real workflow project that the front-page `Workflow` and `Resolution` structure is enough without more workflow-specific metadata, deciding whether `project_type` should become a formally enumerated taxonomy instead of partly implicit usage, eventually adding project-creation automation so `MichaelsNotes/` is created mechanically instead of only by instruction, deciding whether system-level learned truths should move into a dedicated non-project bootstrap area for cleaner no-project portability, deciding whether the included system reference project needs sanitization or trimming over time, deciding whether git publication should remain manual or gain scripted automation for `dev` syncs and explicit `main` releases, and remembering that Obsidian may need a graph refresh/reindex after large link cleanups.
 
 ## Resolution
 - Current resolution state: unresolved
@@ -106,13 +106,26 @@ tags:
 ## Session Index
 | Session Start | Last Prompt | Agent | Session ID | Commit Thread | Prompt Count | Status | Summary |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-04-27 01:27 | 2026-04-27 01:54 | Codex | `<session-2026-04-27-0127>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-27 0127 - starter-release-surface-cleanup]] | 3 | open | Corrected the public repo from a live-vault mirror into a starter release that includes the `llm-knowledge-base-system` reference project, excludes private local data, and documents new-user setup with agent entrypoint wiring plus full index generation |
-| 2026-04-26 23:41 | 2026-04-27 00:26 | Codex | `<session-2026-04-26-2341>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects]] | 8 | open | Defined the cross-machine bootstrap boundary, verified that the updater script remains relocatable, reaffirmed the rule for promoting critical vault invariants into the protocol files, discarded the temporary distribution-folder approach, and converted the live vault into the canonical GitHub repo with `dev` for routine tracked changes and `main` for explicit releases |
-| 2026-04-21 21:05 | 2026-04-21 22:57 | Codex | `<session-2026-04-21-2105>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-21 2105 - michaelsnotes-user-owned-project-folders]] | 6 | open | Added cross-vault `MichaelsNotes/` rules, centralized critical vault-editing conventions, added a canonical cross-agent `User/User.md`, and made both generated project-list hubs keep the shared `Project` footer link |
-| 2026-04-21 00:31 | 2026-04-21 01:37 | Codex | `<current-session>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-21 0031 - workflow-projects-for-reusable-procedures]] | 6 | closed | Promoted workflow projects into the shared protocol, clarified current `project_type` usage, drafted a minimal user-facing workflow prompt, and fixed template placeholder wikilinks so they stop creating phantom graph nodes |
-| 2026-04-20 22:28 | 2026-04-21 00:24 | Codex | `<session-2026-04-20-2228>` | [[Projects/llm-knowledge-base-system/Commits/2026-04-20 2228 - tiered-memory-and-indexing]] | 11 | closed | Added scoped truth storage, starter notes, a machine-scoped record of the live Codex instruction entrypoint, clarified the project-note read path, verified learned-note storage, replaced the PowerShell generator with an incremental Node updater, corrected `global: true` to mean indexed globally rather than stored globally, simplified wiki links for a readable graph, and restored active/inactive project hubs |
+| 2026-05-03 11:23 | 2026-05-03 11:23 | Codex | `codex-20260503-1123` | `Projects/llm-knowledge-base-system/Commits/2026-05-03 1123 - graph-wikilink-audit-cleanup.md` | 1 | open | Tightened the Obsidian graph wikilink policy, cleaned existing bad graph links, added an audit script, and regenerated indexes from source |
+| 2026-04-29 14:11 | 2026-04-29 14:11 | Codex | `codex-20260429-1411` | `Projects/llm-knowledge-base-system/Commits/2026-04-29 1411 - external-project-boundary.md` | 2 | open | Removed accidental personal external-project notes from the repo and added an explicit external-project boundary to the shared protocol |
+| 2026-04-27 01:27 | 2026-04-27 01:54 | Codex | `<session-2026-04-27-0127>` | `Projects/llm-knowledge-base-system/Commits/2026-04-27 0127 - starter-release-surface-cleanup.md` | 3 | open | Corrected the public repo from a live-vault mirror into a starter release that includes the `llm-knowledge-base-system` reference project, excludes private local data, and documents new-user setup with agent entrypoint wiring plus full index generation |
+| 2026-04-26 23:41 | 2026-04-27 00:26 | Codex | `<session-2026-04-26-2341>` | `Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects.md` | 8 | open | Defined the cross-machine bootstrap boundary, verified that the updater script remains relocatable, reaffirmed the rule for promoting critical vault invariants into the protocol files, discarded the temporary distribution-folder approach, and converted the live vault into the canonical GitHub repo with `dev` for routine tracked changes and `main` for explicit releases |
+| 2026-04-21 21:05 | 2026-04-21 22:57 | Codex | `<session-2026-04-21-2105>` | `Projects/llm-knowledge-base-system/Commits/2026-04-21 2105 - michaelsnotes-user-owned-project-folders.md` | 6 | open | Added cross-vault `MichaelsNotes/` rules, centralized critical vault-editing conventions, added a canonical cross-agent `User/User.md`, and made both generated project-list hubs keep the shared `Project` footer link |
+| 2026-04-21 00:31 | 2026-04-21 01:37 | Codex | `<current-session>` | `Projects/llm-knowledge-base-system/Commits/2026-04-21 0031 - workflow-projects-for-reusable-procedures.md` | 6 | closed | Promoted workflow projects into the shared protocol, clarified current `project_type` usage, drafted a minimal user-facing workflow prompt, and fixed template placeholder wikilinks so they stop creating phantom graph nodes |
+| 2026-04-20 22:28 | 2026-04-21 00:24 | Codex | `<session-2026-04-20-2228>` | `Projects/llm-knowledge-base-system/Commits/2026-04-20 2228 - tiered-memory-and-indexing.md` | 11 | closed | Added scoped truth storage, starter notes, a machine-scoped record of the live Codex instruction entrypoint, clarified the project-note read path, verified learned-note storage, replaced the PowerShell generator with an incremental Node updater, corrected `global: true` to mean indexed globally rather than stored globally, simplified wiki links for a readable graph, and restored active/inactive project hubs |
 
 ## Progress
+### Session 2026-05-03 - Codex - codex-20260503-1123
+- [11:23] Identified the graph failure mode: the vault used live wiki links for informational provenance as well as structure, so Obsidian correctly drew unwanted edges from project notes to every commit and from learned/history notes to extra commits or projects.
+- [11:23] Tightened `AGENTS.md`, `CLAUDE.md`, and the templates so project notes use plain commit paths, commit notes link only the parent project, learned notes link only one origin commit, and richer relationships stay as plain paths.
+- [11:23] Added `Scripts/audit-wikilinks.mjs`, converted existing project-note commit links plus extra learned/commit provenance links to plain paths, and verified the audit passed.
+- [11:28] Hardened `Scripts/update-knowledge-base.mjs` against a leading UTF-8 BOM, promoted the Windows/BOM editing warning into `AGENTS.md` and `CLAUDE.md`, and recorded the supporting global learned note.
+
+### Session 2026-04-29 - Codex - codex-20260429-1411
+- [14:11] Removed an accidentally created personal external-project folder from `LLMKnowledgeBase`; the actual external project folder was left untouched.
+- [14:11] Added the external-project boundary to `AGENTS.md` and `CLAUDE.md`: ordinary personal, school, job, application, code, and research projects should stay in their own folders and not be stored as live project folders in the public knowledge-base repo by default.
+- [14:11] Recorded `Projects/llm-knowledge-base-system/Learned/2026-04-29 1411 - external-projects-stay-out-of-public-vault.md` as the supporting global learned note.
+
 ### Session 2026-04-27 - Codex - <session-2026-04-27-0127>
 - [01:27] Audited the tracked GitHub surface against the intended release goal and confirmed that the repo was publishing live project history, machine notes, user profile data, Obsidian config, and generated files instead of only the reusable starter-vault assets.
 - [01:27] Tightened `.gitignore`, `AGENTS.md`, `CLAUDE.md`, and `README.md` to a blank starter-release model, removed the already-tracked local-only surfaces from git with `--cached`, and added tracked placeholder directories so fresh clones keep the expected folder layout without inheriting private vault contents.
@@ -133,7 +146,7 @@ tags:
 - [21:21] Added a dedicated `Critical Vault Editing Conventions` section plus a promotion rule in the shared protocol so future learned rules with the same severity are promoted into the always-read instruction surface in the same task.
 - [22:48] Identified that the vault had no dedicated always-read user-profile surface and that durable user facts would otherwise fall back to global learned notes plus targeted retrieval.
 - [22:48] Added `User/User.md` as the canonical shared user profile, updated both agent protocol files so it is read at session start, capped it to a small curated entry set, and separated it explicitly from project/tool/system memory.
-- [22:57] Promoted the manually added `Project` footer idea into the generator so both `activeProjects.md` and `inactiveProjects.md` now end with `[[Templates/Project|Project]]` instead of relying on hand edits to generated files.
+- [22:57] Promoted the manually added `Project` footer idea into the generator so both `activeProjects.md` and `inactiveProjects.md` now end with ``Templates/Project`` instead of relying on hand edits to generated files.
 
 ### Session 2026-04-21 - Codex - <current-session>
 - [00:31] Decided that reusable procedures such as starting a visible shell should usually start as ordinary projects or reference-style projects, and recorded that as the first project-scoped learned note in this knowledge-base-system project.
@@ -162,11 +175,13 @@ tags:
 - [00:24] Added `activeProjects.md` and `inactiveProjects.md` back as intentional graph hubs so active projects connect to the active list and inactive projects connect to the inactive list without reintroducing other index noise.
 
 ## Commit Threads
-- [[Projects/llm-knowledge-base-system/Commits/2026-04-27 0127 - starter-release-surface-cleanup]] - open - 2026-04-27 01:27
-- [[Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects]] - open - 2026-04-26 23:41
-- [[Projects/llm-knowledge-base-system/Commits/2026-04-21 2105 - michaelsnotes-user-owned-project-folders]] - open - 2026-04-21 21:05
-- [[Projects/llm-knowledge-base-system/Commits/2026-04-21 0031 - workflow-projects-for-reusable-procedures]] - closed - 2026-04-21 00:31
-- [[Projects/llm-knowledge-base-system/Commits/2026-04-20 2228 - tiered-memory-and-indexing]] - closed - 2026-04-20 22:28
+- `Projects/llm-knowledge-base-system/Commits/2026-05-03 1123 - graph-wikilink-audit-cleanup.md` - open - 2026-05-03 11:23
+- `Projects/llm-knowledge-base-system/Commits/2026-04-29 1411 - external-project-boundary.md` - open - 2026-04-29 14:11
+- `Projects/llm-knowledge-base-system/Commits/2026-04-27 0127 - starter-release-surface-cleanup.md` - open - 2026-04-27 01:27
+- `Projects/llm-knowledge-base-system/Commits/2026-04-26 2341 - portable-bootstrap-without-projects.md` - open - 2026-04-26 23:41
+- `Projects/llm-knowledge-base-system/Commits/2026-04-21 2105 - michaelsnotes-user-owned-project-folders.md` - open - 2026-04-21 21:05
+- `Projects/llm-knowledge-base-system/Commits/2026-04-21 0031 - workflow-projects-for-reusable-procedures.md` - closed - 2026-04-21 00:31
+- `Projects/llm-knowledge-base-system/Commits/2026-04-20 2228 - tiered-memory-and-indexing.md` - closed - 2026-04-20 22:28
 
 ## Scope Notes
 - Global notes that affect this project:
@@ -187,6 +202,8 @@ tags:
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0018 - github-publishing-uses-dev-and-main-release-gates.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0127 - starter-release-repo-omits-live-vault-data.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0154 - fresh-clone-setup-needs-agent-entrypoint-and-index-rebuild.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-04-29 1411 - external-projects-stay-out-of-public-vault.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-05-03 1128 - frontmatter-files-must-avoid-bom.md`
 - Machine notes that affect this project:
   Local machine notes may exist under `Machines/<machine-id>/Learned/`, but they are not part of the public starter release.
 - Project-scoped learned notes:
@@ -210,4 +227,6 @@ tags:
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0018 - github-publishing-uses-dev-and-main-release-gates.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0127 - starter-release-repo-omits-live-vault-data.md`
   `Projects/llm-knowledge-base-system/Learned/2026-04-27 0154 - fresh-clone-setup-needs-agent-entrypoint-and-index-rebuild.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-04-29 1411 - external-projects-stay-out-of-public-vault.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-05-03 1128 - frontmatter-files-must-avoid-bom.md`
 - Generated learned view: `Projects/llm-knowledge-base-system/learnedIndex.md`

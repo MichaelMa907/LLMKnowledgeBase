@@ -47,9 +47,16 @@ If two notes at the same scope conflict, prefer the more explicit and more recen
 ## Git Publishing Rules
 - `.gitignore` defines the public GitHub distribution surface for this vault; ignored files stay local and must not be force-added by default
 - The public GitHub repo is a starter release surface plus `Projects/llm-knowledge-base-system/` as the system reference project; do not track other live `Projects/`, `Machines/`, `User/`, `.obsidian/`, or generated root/global/cache files there unless the user explicitly asks for a non-starter export
+- Do not create or maintain personal/external project folders in this public knowledge-base repo by default. If the user names an external project folder, work in that folder and keep only knowledge-base-system changes in `Projects/llm-knowledge-base-system/`.
 - On a machine that has write access to the canonical GitHub repo for this vault, when a knowledge-base-wide change modifies tracked files, commit and push those changes to `dev`
 - Push to `main` only when the user explicitly asks for a release or explicit main update
 - Treat local Obsidian workspace state, live projects other than `Projects/llm-knowledge-base-system/`, all machine-scoped notes, `User/User.md`, generated root/global/cache files, runtime shell artifacts, and `Projects/*/MichaelsNotes/` contents as local-only unless the user explicitly asks otherwise
+
+## External Project Boundary
+- If a user task is about a separate personal, school, job, application, code, or research project, do not store that project as a live project under this repo unless the user explicitly asks to add it to the knowledge base.
+- When the user gives a concrete external project path, treat that path as the project home. Read and write project artifacts there, not in `Projects/<project-slug>/` inside this vault.
+- Use `Projects/llm-knowledge-base-system/` only for changes to this knowledge-base system itself: protocol edits, templates, scripts, release rules, and learned notes about operating the knowledge base.
+- Retrieval from this vault is allowed when the user asks for prior context, but do not convert retrieved context into new personal project notes in this public repo by default.
 
 ## Project Matching Rules
 - Default to a new project unless the user explicitly says to continue a previous conversation, continue a known project, or work inside a named existing project
@@ -126,20 +133,22 @@ If a note with `global: true` was created, replaced, or deleted, include the roo
 - `activeProjects.md` may wiki-link active project notes
 - `inactiveProjects.md` may wiki-link inactive project notes
 - `activeProjects.md` and `inactiveProjects.md` may also end with `[[Templates/Project|Project]]` so both generated list hubs connect to the shared project-template node in the graph
-- Project notes may wiki-link their commit threads
-- Commit notes may wiki-link their parent project
-- Learned notes may wiki-link their origin commit
+- Project notes must not wiki-link commit threads; list commit thread paths as plain text or code-formatted paths so project pages do not become commit hubs
+- Commit notes may wiki-link only their parent project
+- Learned notes may wiki-link only one origin commit; origin projects, follow-up commits, related commits, related projects, and richer provenance must be plain text paths or non-linked references
 - When a prompt discovered inside an ordinary project also requires updating shared protocol files, keep the learned note and origin commit attached to the project where the issue was discovered unless the user explicitly switches work into the knowledge-base-system project
 - In real instantiated notes, live wiki links must be bare `[[...]]` links, never wrapped in backticks or other code formatting, or Obsidian will not treat them as links in the graph
 - Keep richer relationships for agent reading as plain text paths, summaries, or non-linked references instead of extra wiki links
 - Generated index files should list titles, summaries, and paths without wiki links so they do not become graph hubs
 - Template files must not contain live placeholder wiki links such as `[[Projects/<project-slug>/<project-slug>]]`, because Obsidian will treat them as real graph edges and create phantom nodes
-- In `Templates/*.md`, show placeholder link syntax inside backticks or plain text; when instantiating a real note, replace those placeholders with bare live wiki links rather than leaving the backticks in place
+- In `Templates/*.md`, show placeholder link syntax inside backticks or plain text; when instantiating a real commit note or origin-commit learned link, replace those placeholders with bare live wiki links rather than leaving the backticks in place
+- After changing graph-link behavior or doing a broad graph cleanup, run `node Scripts/audit-wikilinks.mjs` and fix every reported live wiki link before relying on Obsidian graph results
 
 ## Critical Vault Editing Conventions
 - Do not hand-edit generated files such as `activeProjects.md`, `inactiveProjects.md`, `Globals/globalIndex.md`, `Machines/<machine-id>/machineIndex.md`, `Projects/<project-slug>/learnedIndex.md`, or `Scripts/knowledge-base-state.json`; update the real source notes and rerun `node Scripts/update-knowledge-base.mjs`
 - Commit threads are append-only historical records; never delete or rewrite earlier prompt entries in them
-- Keep wiki links structural only along the intended graph path, and keep richer relationships as plain text paths or non-linked references
+- Keep wiki links structural only along the intended graph path: project lists to projects, commits to parent projects, and learned notes to one origin commit; keep richer relationships as plain text paths or non-linked references
+- Preserve frontmatter readability when editing on Windows: do not use Windows PowerShell `Set-Content -Encoding utf8` for Markdown frontmatter files unless you also verify or strip the UTF-8 BOM; generated views depend on frontmatter being parseable from the first `---`
 - Never leave a real live wiki link inside backticks, inline code, or fenced code blocks in instantiated notes; code-formatted wiki links are display text, not graph edges
 - Template and instructional files must not contain live placeholder wiki links; keep placeholder link syntax in backticks or plain text so Obsidian does not create phantom nodes
 - `Projects/<project-slug>/MichaelsNotes/` is protected user-owned space; never write, modify, move, rename, or delete it unless the user explicitly asks for that exact change

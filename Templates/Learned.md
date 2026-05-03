@@ -36,6 +36,8 @@ tags:
 > Keep one durable truth per file.
 >
 > Keep the body lightweight if needed; this note does not need rigid formatting as long as the truth, scope, reuse context, and links are clear.
+>
+> Use a live wiki link only for `Origin commit`. Keep `Origin project`, related commits, related projects, and richer provenance as plain text paths.
 
 ## Scope
 - Applies at:
@@ -53,8 +55,8 @@ tags:
 - Re-check trigger:
 
 ## Links
-- Origin project:
-- Origin commit:
+- Origin project: `Projects/<project-slug>/<project-slug>.md`
+- Origin commit: `[[Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>]]` in the template only; instantiated learned notes should use one bare `[[...]]` origin-commit link
 - Related notes:
 - Related files or references:
 

@@ -28,7 +28,7 @@ tags:
 - Promotion or demotion notes: keep global unless the vault stops using Obsidian-style wiki links entirely.
 
 ## Truth
-- What is true: template files must not contain live placeholder wiki links such as `[[Projects/<project-slug>/<project-slug>]]`; keep placeholder link syntax in backticks or plain text inside templates, and only use live wiki links in instantiated real notes.
+- What is true: template files must not contain live placeholder wiki links such as ``Projects/<project-slug>/<project-slug>.md``; keep placeholder link syntax in backticks or plain text inside templates, and only use live wiki links in instantiated real notes.
 - Why it matters: Obsidian treats placeholder wiki links in template files as real graph edges and phantom note targets, which pollutes the graph with nonexistent nodes.
 - When to reuse it: reuse whenever editing `Templates/*.md` or any other instructional note that needs to show wiki-link syntax without creating real graph links.
 

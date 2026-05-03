@@ -80,7 +80,7 @@ tags:
 
 ### Prompt 06 - 2026-04-21 01:37
 - User request: fix the foundational template issue where Obsidian is treating placeholder wiki links in template files as nonexistent-file graph nodes.
-- Action: traced the phantom graph nodes to live `[[...]]` placeholder links inside `Templates/Commit.md` and `Templates/Project.md`, changed those placeholder examples to backticked text, updated the shared agent instructions so templates never contain live placeholder wiki links again, and recorded the rule as a global learned note.
+- Action: traced the phantom graph nodes to live ``...`` placeholder links inside `Templates/Commit.md` and `Templates/Project.md`, changed those placeholder examples to backticked text, updated the shared agent instructions so templates never contain live placeholder wiki links again, and recorded the rule as a global learned note.
 - Reason: the graph should only reflect real notes and intended structural links, not template placeholders that happen to resemble wiki links.
 - Commands / tools: searched the vault for wiki links containing angle-bracket placeholders with `rg`, reread the shared instructions and templates, patched the affected files, and refreshed generated views with `node Scripts/update-knowledge-base.mjs --changed Projects/llm-knowledge-base-system`.
 - Files / notes touched: `AGENTS.md`, `CLAUDE.md`, `Templates/Commit.md`, `Templates/Project.md`, `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`, this commit thread, and `Projects/llm-knowledge-base-system/Learned/2026-04-21 0137 - template-placeholders-must-not-be-live-wikilinks.md`.

@@ -40,7 +40,7 @@ tags:
 >
 > Keep placeholder link examples in backticks inside template files so Obsidian does not create phantom graph nodes from template text.
 >
-> Replace those backticked examples with bare real wiki links when instantiating an actual project note. Do not leave the backticks in place around live links.
+> Project notes should list commit thread paths as plain text or code-formatted paths, not live wiki links. Commit notes carry the live link back to the parent project.
 >
 > Use alongside `Templates/Commit.md` and `Templates/Learned.md`.
 
@@ -97,7 +97,7 @@ tags:
 ## Session Index
 | Session Start | Last Prompt | Agent | Session ID | Commit Thread | Prompt Count | Status | Summary |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| YYYY-MM-DD HH:MM | YYYY-MM-DD HH:MM | Codex | `<session-id>` | `[[Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>]]` in the template only; instantiated notes must use bare `[[...]]` | 1 | open | Started project |
+| YYYY-MM-DD HH:MM | YYYY-MM-DD HH:MM | Codex | `<session-id>` | `Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>.md` | 1 | open | Started project |
 
 ## Progress
 > Add one progress bullet after every prompt.
@@ -107,10 +107,10 @@ tags:
 > Do not rewrite prior-session subsections. If an older session was wrong, add a new correction entry instead.
 
 ### Session YYYY-MM-DD - Codex - <session-id>
-- [HH:MM] Opened this project and started `[[Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>]]` in the template only; instantiated notes must use bare `[[...]]`.
+- [HH:MM] Opened this project and started `Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>.md`.
 
 ## Commit Threads
-- `[[Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>]]` in the template only; instantiated notes must use bare `[[...]]` - open - YYYY-MM-DD HH:MM
+- `Projects/<project-slug>/Commits/<YYYY-MM-DD HHmm> - <commit-slug>.md` - open - YYYY-MM-DD HH:MM
 
 ## Scope Notes
 - Global notes that affect this project:

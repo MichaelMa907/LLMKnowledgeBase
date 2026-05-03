@@ -332,7 +332,7 @@ function listChildDirectories(folderPath) {
 }
 
 function readFrontMatter(filePath) {
-  const raw = fs.readFileSync(filePath, 'utf8');
+  const raw = fs.readFileSync(filePath, 'utf8').replace(/^\uFEFF/, '');
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) {
     return {};

@@ -2,7 +2,7 @@
 note_type: learned
 title: "Project List Pages End With Project Template Link"
 learn_id: "2026-04-21-2257-project-list-pages-end-with-project-template-link"
-summary: "The generated `activeProjects.md` and `inactiveProjects.md` pages should end with `[[Templates/Project|Project]]` so both graph hubs connect to the shared project-template node."
+summary: "The generated `activeProjects.md` and `inactiveProjects.md` pages should end with ``Templates/Project`` so both graph hubs connect to the shared project-template node."
 scope: "global"
 global: true
 importance: 0.88
@@ -28,7 +28,7 @@ tags:
 - Promotion or demotion notes: keep global unless the user changes how project-list hubs should connect in the Obsidian graph.
 
 ## Truth
-- What is true: `activeProjects.md` and `inactiveProjects.md` should both end with `[[Templates/Project|Project]]` so each generated list hub connects to the shared project-template node in the graph.
+- What is true: `activeProjects.md` and `inactiveProjects.md` should both end with ``Templates/Project`` so each generated list hub connects to the shared project-template node in the graph.
 - Why it matters: this gives the graph a clearer common anchor for project-list pages and preserves the same footer behavior across regenerations.
 - When to reuse it: reuse whenever editing the project-list generator, graph-link policy, or the layout of the two top-level project-list pages.
 

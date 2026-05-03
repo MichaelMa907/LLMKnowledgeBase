@@ -79,8 +79,8 @@ tags:
 - Follow-up impact: future durable user facts can now be written into `User/User.md` directly when they are truly cross-project and stable.
 
 ### Prompt 06 - 2026-04-21 22:57
-- User request: preserve the manually added `[[Project]]` footer behavior by making both `activeProjects.md` and `inactiveProjects.md` end with the same link to `Templates/Project`, because it makes the graph easier to read.
-- Action: updated the generator so both project-list pages now end with `[[Templates/Project|Project]]`, added the rule to the shared graph-view guidance, recorded it as a global learned note, and updated the project/session records.
+- User request: preserve the manually added ``Project`` footer behavior by making both `activeProjects.md` and `inactiveProjects.md` end with the same link to `Templates/Project`, because it makes the graph easier to read.
+- Action: updated the generator so both project-list pages now end with ``Templates/Project``, added the rule to the shared graph-view guidance, recorded it as a global learned note, and updated the project/session records.
 - Reason: the user wants the footer link to be part of the durable generated layout instead of a hand edit that disappears on the next regeneration.
 - Commands / tools: inspected the current generated pages and updater script, patched the shared protocol files plus generator and notes, and refreshed generated views with `node Scripts/update-knowledge-base.mjs --changed Projects/llm-knowledge-base-system`.
 - Files / notes touched: `AGENTS.md`, `CLAUDE.md`, `Scripts/update-knowledge-base.mjs`, `Projects/llm-knowledge-base-system/Learned/2026-04-21 2257 - project-list-pages-end-with-project-template-link.md`, `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`, `activeProjects.md`, `inactiveProjects.md`, and this commit thread.
