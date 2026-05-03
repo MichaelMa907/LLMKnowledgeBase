@@ -58,6 +58,13 @@ If two notes at the same scope conflict, prefer the more explicit and more recen
 - Use `Projects/llm-knowledge-base-system/` only for changes to this knowledge-base system itself: protocol edits, templates, scripts, release rules, and learned notes about operating the knowledge base.
 - Retrieval from this vault is allowed when the user asks for prior context, but do not convert retrieved context into new personal project notes in this public repo by default.
 
+## External Project Artifact Placement
+- For an actual user project outside this knowledge-base vault, do not place loose Claude-created support files directly in the project root or arbitrary project folders.
+- If a Claude-created file is important enough to keep with that external project but is not a normal source file, config file, asset, or document that belongs in the project's established structure, create or reuse `Claude's Corner/` inside that project and put the file there.
+- Codex should use `Codex's Corner/` for the same purpose; do not put Claude artifacts in `Codex's Corner/` or Codex artifacts in `Claude's Corner/`.
+- Keep truly temporary scratch artifacts in `C:\Users\micha\Temp` instead of a project corner folder.
+- If the user explicitly names an exact destination, or the file is part of the project's real source tree and must live in a specific path for the project to work, use that destination and document it in the response.
+
 ## Project Matching Rules
 - Default to a new project unless the user explicitly says to continue a previous conversation, continue a known project, or work inside a named existing project
 - If the user explicitly says this is a new project or new task, do not merge it into an older project even if it looks similar

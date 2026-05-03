@@ -7,9 +7,9 @@ project_slug: "llm-knowledge-base-system"
 agent: "Codex"
 session_id: "codex-20260503-1123"
 started: "2026-05-03 11:23"
-last_updated: "2026-05-03 11:27"
+last_updated: "2026-05-03 11:32"
 status: "open"
-prompt_count: 1
+prompt_count: 2
 merge_review_status: "not_needed"
 tags:
   - commit
@@ -38,10 +38,21 @@ tags:
 - Outcome: the wiki-link audit passed after the full rebuild. The regenerated active/inactive project lists now include project notes from a clean full scan, including the previously missing `computer-performance-settings-check` project.
 - Follow-up impact: future graph-shaping changes should run `node Scripts/audit-wikilinks.mjs`; agents should avoid Windows PowerShell `Set-Content -Encoding utf8` for frontmatter files because it can add a BOM that breaks the current Node frontmatter parser.
 
+### Prompt 02 - 2026-05-03 11:32
+- User request: add a rule that when Codex or Claude needs to keep important files inside an actual external project directory, the agent should create `Codex's Corner` or `Claude's Corner` and place those files there instead of dropping them directly into the project directory.
+- Action: added an `External Project Artifact Placement` section to `AGENTS.md` and `CLAUDE.md`, recorded the supporting global learned note, and updated the knowledge-base-system project state.
+- Reason: external user projects should not accumulate loose agent-authored support files in their roots or arbitrary folders; agent-created artifacts need an obvious, agent-specific home unless they are real source/config/project files that belong in the established structure.
+- Commands / tools: `Select-String`, `Get-Content`, `apply_patch`.
+- Files / notes touched: `AGENTS.md`, `CLAUDE.md`, this commit thread, `Projects/llm-knowledge-base-system/llm-knowledge-base-system.md`, and `Projects/llm-knowledge-base-system/Learned/2026-05-03 1132 - external-project-agent-corner-folders.md`.
+- Scope impact: global external-project file-placement invariant for Codex and Claude.
+- Outcome: future Codex support artifacts inside external projects go under `Codex's Corner/`; future Claude support artifacts go under `Claude's Corner/`; truly temporary scratch artifacts still go to `C:\Users\micha\Temp`.
+- Follow-up impact: run the updater for `Projects/llm-knowledge-base-system` and push tracked knowledge-base changes to `dev`.
+
 ## Scope Notes
 - Global notes created or updated:
   `Projects/llm-knowledge-base-system/Learned/2026-04-21 0015 - graph-view-uses-structural-links.md`
   `Projects/llm-knowledge-base-system/Learned/2026-05-03 1128 - frontmatter-files-must-avoid-bom.md`
+  `Projects/llm-knowledge-base-system/Learned/2026-05-03 1132 - external-project-agent-corner-folders.md`
 - Project notes created or updated:
   `AGENTS.md`
   `CLAUDE.md`
