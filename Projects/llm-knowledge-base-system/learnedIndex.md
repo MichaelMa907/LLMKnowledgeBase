@@ -1,5 +1,5 @@
 # Learned Index - llm-knowledge-base-system
-generated: 2026-05-03 11:30:06 -04:00
+generated: 2026-05-03 11:31:51 -04:00
 source: ../../Scripts/update-knowledge-base.mjs
 
 This file is generated from active learned notes stored in this project's `Learned/` folder. Sorted by `importance`, then `confidence`, then `last_updated`.
